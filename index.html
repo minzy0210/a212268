@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Your Name] — Mobile App Development e-Portfolio</title>
+<style>
+  :root{
+    --paper:#F7F3E9;
+    --ink:#1E2A24;
+    --accent:#1F6F5C;
+    --accent-soft:#CDE4DC;
+    --line:#D8D0BC;
+    --warn:#C76B3C;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+    --sans: 'Inter', -apple-system, Segoe UI, sans-serif;
+    --serif: 'Source Serif Pro', Georgia, serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--sans);
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+  }
+
+  /* ===== Layout shell ===== */
+  .wrap{max-width:980px; margin:0 auto; padding:0 24px;}
+
+  header.hero{
+    border-bottom:2px solid var(--ink);
+    padding:48px 0 32px;
+    position:relative;
+  }
+  header.hero::before{
+    content:"e-PORTFOLIO";
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.3em;
+    color:var(--accent);
+    display:block;
+    margin-bottom:12px;
+  }
+  header.hero h1{
+    font-family:var(--serif);
+    font-size:clamp(2.2rem, 6vw, 3.4rem);
+    margin:0 0 8px;
+    line-height:1.1;
+  }
+  header.hero .role{
+    font-family:var(--mono);
+    font-size:0.95rem;
+    color:var(--ink);
+    opacity:0.75;
+  }
+
+  /* ===== Nav ===== */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; gap:4px; overflow-x:auto;
+    padding-top:0; padding-bottom:0;
+  }
+  nav a{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink);
+    text-decoration:none;
+    padding:14px 12px;
+    white-space:nowrap;
+    border-bottom:3px solid transparent;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  nav a:hover{border-color:var(--accent); color:var(--accent);}
+
+  /* ===== Sections ===== */
+  section{
+    padding:56px 0;
+    border-bottom:1px solid var(--line);
+  }
+  section:last-of-type{border-bottom:none;}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 6px;
+  }
+  h2{
+    font-family:var(--serif);
+    font-size:clamp(1.6rem, 4vw, 2.2rem);
+    margin:0 0 24px;
+  }
+  h3{
+    font-family:var(--serif);
+    font-size:1.25rem;
+    margin:0 0 4px;
+  }
+
+  /* ===== Profile grid ===== */
+  .profile-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:32px;
+  }
+  .profile-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:20px;
+  }
+  .profile-card dt{
+    font-family:var(--mono);
+    font-size:0.7rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-top:14px;
+  }
+  .profile-card dt:first-child{margin-top:0;}
+  .profile-card dd{margin:2px 0 0;}
+
+  .sdg-box{
+    display:flex; gap:16px; align-items:flex-start;
+    background:var(--accent);
+    color:var(--paper);
+    border-radius:4px;
+    padding:20px;
+  }
+  .sdg-badge{
+    flex:0 0 auto;
+    width:64px; height:64px;
+    border-radius:4px;
+    border:2px dashed var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:0.75rem; text-align:center;
+  }
+  .sdg-box h3{color:var(--paper); margin-bottom:6px;}
+
+  /* ===== Lab cards ===== */
+  .lab{
+    border:1px solid var(--line);
+    border-radius:4px;
+    background:#fff;
+    margin-bottom:24px;
+    overflow:hidden;
+  }
+  .lab-header{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:16px 20px;
+    background:var(--accent-soft);
+    border-bottom:1px solid var(--line);
+    flex-wrap:wrap; gap:8px;
+  }
+  .lab-header .tag{
+    font-family:var(--mono);
+    font-size:0.75rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+  }
+  .lab-body{padding:20px;}
+
+  .screenshot-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(200px,1fr));
+    gap:12px;
+    margin:16px 0;
+  }
+  .screenshot-grid .ph{
+    aspect-ratio:9/16;
+    background:repeating-linear-gradient(45deg, #EFE9D8, #EFE9D8 10px, #E5DEC8 10px, #E5DEC8 20px);
+    border:1px solid var(--line);
+    border-radius:4px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:0.7rem; color:#8a8166;
+    text-align:center; padding:8px;
+  }
+
+  .video-link{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:0.85rem;
+    color:var(--warn);
+    border:1px solid var(--warn);
+    border-radius:4px;
+    padding:8px 14px;
+    text-decoration:none;
+    margin:8px 0;
+  }
+  .video-link:hover{background:var(--warn); color:#fff;}
+
+  .reflection{
+    margin-top:16px;
+    padding-left:16px;
+    border-left:3px solid var(--accent);
+    font-style:italic;
+  }
+  .reflection p::before{content:"Reflection — "; font-style:normal; font-weight:600; color:var(--accent);}
+
+  /* ===== Project cards ===== */
+  .project{
+    border:1px solid var(--ink);
+    border-radius:4px;
+    margin-bottom:28px;
+    background:#fff;
+  }
+  .project-header{
+    padding:18px 20px;
+    border-bottom:1px solid var(--line);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; align-items:baseline;
+  }
+  .project-body{padding:20px;}
+  .project-body dl{display:grid; grid-template-columns:140px 1fr; gap:8px 16px; margin:0;}
+  .project-body dt{font-family:var(--mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent);}
+  .project-body dd{margin:0;}
+  .links{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px;}
+  .links a{
+    font-family:var(--mono); font-size:0.8rem;
+    border:1px solid var(--ink); border-radius:4px;
+    padding:6px 12px; text-decoration:none; color:var(--ink);
+  }
+  .links a:hover{background:var(--ink); color:var(--paper);}
+
+  /* ===== Skills ===== */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:20px;
+  }
+  .skill-cat h3{font-size:1rem; text-transform:uppercase; letter-spacing:0.08em; font-family:var(--mono); color:var(--accent); margin-bottom:0;}
+  .pill-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+  .pill{
+    font-family:var(--mono); font-size:0.78rem;
+    background:var(--accent-soft);
+    border:1px solid var(--accent);
+    border-radius:999px;
+    padding:4px 12px;
+  }
+
+  /* ===== References ===== */
+  ul.ref-list{padding-left:20px;}
+  ul.ref-list li{margin-bottom:8px;}
+
+  footer{
+    padding:32px 0 60px;
+    font-family:var(--mono);
+    font-size:0.75rem;
+    color:#8a8166;
+    text-align:center;
+  }
+
+  @media (max-width:720px){
+    .profile-grid{grid-template-columns:1fr;}
+    .project-body dl{grid-template-columns:1fr;}
+    .project-body dt{margin-top:8px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>[Your Full Name]</h1>
+    <div class="role">Matric No. [XXXXXXXX] · Programme: [e.g. Bachelor of Computer Science] · Instructor: [Instructor's Name]</div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#profile">Profile</a>
+    <a href="#labs">Lab Submissions</a>
+    <a href="#projects">Projects</a>
+    <a href="#reflection">Reflection</a>
+    <a href="#skills">Skills</a>
+    <a href="#resources">Resources</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- 1. STUDENT PROFILE -->
+  <section id="profile">
+    <p class="eyebrow">01 · Student Profile</p>
+    <h2>About Me</h2>
+
+    <div class="profile-grid">
+      <div class="profile-card">
+        <dl>
+          <dt>Name</dt><dd>[Your Full Name]</dd>
+          <dt>Matric No.</dt><dd>[XXXXXXXX]</dd>
+          <dt>Programme</dt><dd>[Programme name]</dd>
+          <dt>Instructor</dt><dd>[Instructor's Name]</dd>
+        </dl>
+      </div>
+
+      <div class="profile-card">
+        <dt style="margin-top:0;">Introduction</dt>
+        <dd>
+          [Write a short introduction about yourself — your background, interest in mobile app development, and what motivated you to take this course.]
+        </dd>
+        <dt>Learning Goals</dt>
+        <dd>
+          [List 2–3 goals, e.g. "Build confidence in Android UI design with Jetpack Compose", "Learn to integrate APIs and cloud storage", "Apply mobile development to a real-world problem".]
+        </dd>
+      </div>
+    </div>
+
+    <div class="sdg-box" style="margin-top:24px;">
+      <div class="sdg-badge">SDG [#]</div>
+      <div>
+        <h3>Chosen SDG: [SDG Name]</h3>
+        <p style="margin:0;">[One-line statement on how your project connects to this SDG, e.g. "My app helps users track water usage to support SDG 6: Clean Water and Sanitation."]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. LAB SUBMISSIONS -->
+  <section id="labs">
+    <p class="eyebrow">02 · Lab Submissions</p>
+    <h2>Lab Work</h2>
+
+    <!-- Lab 1 -->
+    <article class="lab">
+      <div class="lab-header">
+        <h3 style="margin:0;">Lab 1 — UI</h3>
+        <span class="tag">User Interface Design</span>
+      </div>
+      <div class="lab-body">
+        <div class="screenshot-grid">
+          <div class="ph">Screenshot 1<br>[replace with image]</div>
+          <div class="ph">Screenshot 2<br>[replace with image]</div>
+          <div class="ph">Screenshot 3<br>[replace with image]</div>
+        </div>
+        <a class="video-link" href="[YOUTUBE LINK]" target="_blank" rel="noopener">▶ Watch Demo Video</a>
+        <div class="reflection">
+          <p>[Write your reflection: what UI components you built, what you learned about layouts, and any challenges faced.]</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Lab 2 -->
+    <article class="lab">
+      <div class="lab-header">
+        <h3 style="margin:0;">Lab 2 — Interaction</h3>
+        <span class="tag">User Interaction</span>
+      </div>
+      <div class="lab-body">
+        <div class="screenshot-grid">
+          <div class="ph">Screenshot 1<br>[replace with image]</div>
+          <div class="ph">Screenshot 2<br>[replace with image]</div>
+          <div class="ph">Screenshot 3<br>[replace with image]</div>
+        </div>
+        <a class="video-link" href="[YOUTUBE LINK]" target="_blank" rel="noopener">▶ Watch Demo Video</a>
+        <div class="reflection">
+          <p>[Write your reflection on event handling, gestures, state changes, etc.]</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Lab 3 -->
+    <article class="lab">
+      <div class="lab-header">
+        <h3 style="margin:0;">Lab 3 — Material Design</h3>
+        <span class="tag">Material Design Components</span>
+      </div>
+      <div class="lab-body">
+        <div class="screenshot-grid">
+          <div class="ph">Screenshot 1<br>[replace with image]</div>
+          <div class="ph">Screenshot 2<br>[replace with image]</div>
+          <div class="ph">Screenshot 3<br>[replace with image]</div>
+        </div>
+        <a class="video-link" href="[YOUTUBE LINK]" target="_blank" rel="noopener">▶ Watch Demo Video</a>
+        <div class="reflection">
+          <p>[Write your reflection on applying Material Design principles, theming, and components used.]</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Lab 4 -->
+    <article class="lab">
+      <div class="lab-header">
+        <h3 style="margin:0;">Lab 4 — Navigation</h3>
+        <span class="tag">App Navigation</span>
+      </div>
+      <div class="lab-body">
+        <div class="screenshot-grid">
+          <div class="ph">Screenshot 1<br>[replace with image]</div>
+          <div class="ph">Screenshot 2<br>[replace with image]</div>
+          <div class="ph">Screenshot 3<br>[replace with image]</div>
+        </div>
+        <a class="video-link" href="[YOUTUBE LINK]" target="_blank" rel="noopener">▶ Watch Demo Video</a>
+        <div class="reflection">
+          <p>[Write your reflection on implementing multi-screen navigation, navigation graphs, and passing data between screens.]</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Lab 5 -->
+    <article class="lab">
+      <div class="lab-header">
+        <h3 style="margin:0;">Lab 5 — Room</h3>
+        <span class="tag">Local Database (Room)</span>
+      </div>
+      <div class="lab-body">
+        <div class="screenshot-grid">
+          <div class="ph">Screenshot 1<br>[replace with image]</div>
+          <div class="ph">Screenshot 2<br>[replace with image]</div>
+          <div class="ph">Screenshot 3<br>[replace with image]</div>
+        </div>
+        <a class="video-link" href="[YOUTUBE LINK]" target="_blank" rel="noopener">▶ Watch Demo Video</a>
+        <div class="reflection">
+          <p>[Write your reflection on setting up Room database, entities, DAOs, and CRUD operations.]</p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- 3. PROJECT SUBMISSIONS -->
+  <section id="projects">
+    <p class="eyebrow">03 · Project Submissions</p>
+    <h2>Projects</h2>
+
+    <!-- Project 1 -->
+    <article class="project">
+      <div class="project-header">
+        <h3 style="margin:0;">Project 1</h3>
+        <span class="tag" style="font-family:var(--mono); font-size:0.75rem; color:var(--accent);">Built on Lab 4 + Working Features</span>
+      </div>
+      <div class="project-body">
+        <dl>
+          <dt>Problem Statement</dt>
+          <dd>[Describe the real-world problem your app addresses, and how it relates to navigation and core functionality from Lab 4.]</dd>
+
+          <dt>Key Features</dt>
+          <dd>[List the working features implemented, e.g. multi-screen navigation, forms, data display, etc.]</dd>
+
+          <dt>Lessons Learned</dt>
+          <dd>[Reflect on technical and design lessons learned while building this project.]</dd>
+        </dl>
+        <div class="links">
+          <a href="[YOUTUBE VSR LINK]" target="_blank" rel="noopener">▶ YouTube VSR</a>
+          <a href="[GITHUB REPO LINK]" target="_blank" rel="noopener">⌥ GitHub Repository</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="project">
+      <div class="project-header">
+        <h3 style="margin:0;">Project 2</h3>
+        <span class="tag" style="font-family:var(--mono); font-size:0.75rem; color:var(--accent);">Lab 5 + 2 Screens + API + Sensors + Cloud</span>
+      </div>
+      <div class="project-body">
+        <dl>
+          <dt>Problem Statement</dt>
+          <dd>[Describe the real-world problem this project addresses, building on the Room database from Lab 5.]</dd>
+
+          <dt>Key Features</dt>
+          <dd>[Describe the two screens, the API integrated, the sensor(s) used, and the cloud service (e.g. Firebase) implemented.]</dd>
+
+          <dt>Lessons Learned</dt>
+          <dd>[Reflect on what you learned about combining local storage, APIs, sensors, and cloud sync.]</dd>
+        </dl>
+        <div class="links">
+          <a href="[YOUTUBE VSR LINK]" target="_blank" rel="noopener">▶ YouTube VSR</a>
+          <a href="[GITHUB REPO LINK]" target="_blank" rel="noopener">⌥ GitHub Repository</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- 4. REFLECTION & LEARNING JOURNEY -->
+  <section id="reflection">
+    <p class="eyebrow">04 · Reflection &amp; Learning Journey</p>
+    <h2>From Lab 1 to Project 2</h2>
+    <p>
+      [Reflect on your overall growth across the course — how your skills evolved from basic UI layouts in Lab 1 to a full-featured app with API, sensors, and cloud integration in Project 2.]
+    </p>
+    <p>
+      [Discuss the biggest challenges you faced and how you overcame them — e.g. debugging, learning new APIs, time management.]
+    </p>
+    <p>
+      [Discuss the impact of your chosen SDG on your project direction, and what this experience taught you about using technology for social good.]
+    </p>
+  </section>
+
+  <!-- 5. SKILLS & TECH STACK -->
+  <section id="skills">
+    <p class="eyebrow">05 · Skills &amp; Tech Stack</p>
+    <h2>Technologies I Can Use Confidently</h2>
+
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <h3>Languages</h3>
+        <div class="pill-row">
+          <span class="pill">Kotlin</span>
+          <span class="pill">Java</span>
+          <span class="pill">XML</span>
+          <span class="pill">[+ add more]</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Frameworks & Tools</h3>
+        <div class="pill-row">
+          <span class="pill">Android Studio</span>
+          <span class="pill">Jetpack Compose</span>
+          <span class="pill">Material Design</span>
+          <span class="pill">[+ add more]</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Data & Cloud</h3>
+        <div class="pill-row">
+          <span class="pill">Room Database</span>
+          <span class="pill">Firebase</span>
+          <span class="pill">REST APIs</span>
+          <span class="pill">[+ add more]</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Other</h3>
+        <div class="pill-row">
+          <span class="pill">Git / GitHub</span>
+          <span class="pill">Figma</span>
+          <span class="pill">[+ add more]</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. RESOURCES & REFERENCES -->
+  <section id="resources">
+    <p class="eyebrow">06 · Resources &amp; References</p>
+    <h2>Resources, APIs &amp; Acknowledgements</h2>
+    <ul class="ref-list">
+      <li>[API name] — [brief description, link to documentation]</li>
+      <li>[Library/SDK name] — [brief description, link to documentation]</li>
+      <li>AI Assistance: [Describe any AI tools used (e.g. ChatGPT, Claude, GitHub Copilot) and how they helped — e.g. debugging, code explanation, content drafting.]</li>
+      <li>[Other tutorials, articles, or course materials referenced]</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  © [Year] [Your Name] · Built for [Course Code / Course Name] · Hosted on GitHub Pages
+</footer>
+
+</body>
+</html>
