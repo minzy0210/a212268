@@ -316,7 +316,7 @@
     </div>
 
     <div class="sdg-box" style="margin-top:24px;">
-      <div class="sdg-badge">SDG [#]</div>
+      <div class="sdg-badge">SDG 12</div>
       <div>
         <h3>Chosen SDG: SDG 12</h3>
         <p style="margin:0;">An app addressing food waste and unsustainable consumption, in line with SDG 12, Responsible Consumption and Production.</p>
@@ -332,14 +332,14 @@
     <!-- Lab 1 -->
     <article class="lab">
       <div class="lab-header">
-        <h3 style="margin:0;">Lab 1 — UI</h3>
+        <h3 style="margin:0;">Lab 1 — Basic Layout with Jetpack Compose</h3>
         <span class="tag">User Interface Design</span>
       </div>
       <div class="lab-body">
         <a class="video-link" href="https://youtu.be/XpD_8XmYhnE" target="_blank" rel="noopener">▶ Watch Demo Video</a>
        <a href="https://github.com/minzy0210/A212268_NAZATULAINI_LAB1.git" target="_blank" rel="noopener">⌥ GitHub Repository</a>
         <div class="reflection">
-          <p>[Write your reflection: what UI components you built, what you learned about layouts, and any challenges faced.]</p>
+          <p>For this lab, I recreated the Home Screen layout of ReServe using only Row, Column, and Box, while changing the colors, fonts, and images to make it my own. I used Column to stack the main sections vertically, Row for elements that needed to sit side-by-side like the top bar icons, and Box to layer the profile image over the background banner. The trickiest part was getting the spacing and alignment right using Modifiers, but experimenting with padding(), fillMaxWidth(), and weight() helped me understand how Compose layouts work declaratively. Overall, this task helped me connect what we learned in the lecture about Row, Column, and Box to a real design, and gave me a solid foundation for building the rest of my e-portfolio project.</p>
         </div>
       </div>
     </article>
@@ -354,7 +354,7 @@
         <a class="video-link" href="https://youtu.be/6I-1Q9W_Cjc?si=QwtUyXFWs0NJkhn9" target="_blank" rel="noopener">▶ Watch Demo Video</a>
        <a href="https://github.com/minzy0210/A212268_Nurmeen_NAZATULAINI_LAB2" target="_blank" rel="noopener">⌥ GitHub Repository</a>
         <div class="reflection">
-          <p>[Write your reflection on event handling, gestures, state changes, etc.]</p>
+          <p>For this lab, I upgraded my SDG app's static layout by adding a TextField and a Button to make it interactive. I used remember { mutableStateOf("") } to hold the input value, so that whenever the user types and taps the button, the state changes and Compose automatically recomposes the UI to show the updated message. This connected directly to the lecture concept of state hoisting keeping the state variable at the top of the Composable so both the TextField and Button could read and update it. At first it was a bit confusing to understand why the UI wouldn't update without mutableStateOf, but once I saw recomposition happen live, the concept of reactive UI in Compose finally clicked for me.</p>
         </div>
       </div>
     </article>
@@ -369,7 +369,7 @@
         <a class="video-link" href="	https://youtu.be/qvPvSB1oq6E?feature=shared" target="_blank" rel="noopener">▶ Watch Demo Video</a>
        <a href="https://github.com/minzy0210/A212268_Nurmeen_NAZATULAINI_LAB3" target="_blank" rel="noopener">⌥ GitHub Repository</a>
         <div class="reflection">
-          <p>[Write your reflection on applying Material Design principles, theming, and components used.]</p>
+          <p>For this lab, I applied a custom Material 3 theme to my SDG app by choosing a primary color that reflects my SDG theme, generating a full color palette using the Material Theme Builder, and integrating the exported Color.kt and Theme.kt files into my project. I then wrapped my existing content inside Card composables to give the layout more visual structure and elevation, and added a subtle expand/collapse animation using animateContentSize() to one of the cards. This lab helped me understand how professional apps maintain consistent branding through a centralized theme rather than hardcoded colors scattered across composables. The trickiest part was making sure all my existing components correctly inherited the new theme, but once integrated, the app immediately looked more polished and cohesive.</p>
         </div>
       </div>
     </article>
@@ -384,7 +384,7 @@
         <a class="video-link" href="https://youtu.be/-C92jxXflyc?si=TTwVpoh71GO_zDZo" target="_blank" rel="noopener">▶ Watch Demo Video</a>
         <a href="https://github.com/minzy0210/A212268_Nurmeen_NAZATULAINI_LAB4" target="_blank" rel="noopener">⌥ GitHub Repository</a>
         <div class="reflection">
-          <p>[Write your reflection on implementing multi-screen navigation, navigation graphs, and passing data between screens.]</p>
+          <p>For this lab, I upgraded my SDG app into a multi-screen application with at least three distinct screens connected through a NavController, defining clear routes for navigating between them. I created a data class with multiple fields to represent my app's core information and implemented a ViewModel to hold and manage this data, allowing it to persist across screens even during configuration changes like screen rotation. This tied directly into the lecture concepts of state management and navigation architecture — instead of passing data manually between composables, the ViewModel acts as a shared source of truth that all screens can access. The most challenging part was correctly setting up the navigation graph and passing data between routes, but once it worked, I could clearly see how navigation and ViewModel work together to support a real multi-screen app.</p>
         </div>
       </div>
     </article>
@@ -399,7 +399,7 @@
         <a class="video-link" href="https://youtu.be/wN1kq3Tu8SE?si=2V7ECJ-ZIqnIFPhd" target="_blank" rel="noopener">▶ Watch Demo Video</a>
         <a href="https://github.com/minzy0210/A212268_Nurmeen_NAZATULAINI_LAB5.git" target="_blank" rel="noopener">⌥ GitHub Repository</a>
         <div class="reflection">
-          <p>[Write your reflection on setting up Room database, entities, DAOs, and CRUD operations.]</p>
+          <p>For this lab, I upgraded my SDG app into a full MVVM + Repository + Room architecture by creating an Entity to represent my data, a DAO interface with insert() and getAll() returning a Flow<List<Entity>>, a Room database as a singleton, a Repository to connect the ViewModel to the DAO, and a ViewModel that exposes the data as a StateFlow to the UI. Testing this with the Database Inspector and seeing my entered data persist even after restarting the app made the concept of persistent storage feel real, compared to the in-memory state used in earlier labs. This connected to the lecture's emphasis on separating concerns through layered architecture, where each component (UI, ViewModel, Repository, DAO, Database) has a single responsibility. The most challenging part was getting all the layers correctly wired together, but once data successfully survived an app restart, I understood why Room is essential for building a "real" application.</p>
         </div>
       </div>
     </article>
@@ -419,13 +419,13 @@
       <div class="project-body">
         <dl>
           <dt>Problem Statement</dt>
-          <dd>[Describe the real-world problem your app addresses, and how it relates to navigation and core functionality from Lab 4.]</dd>
+          <dd>ReServe addresses food waste and underused household items within local communities by connecting people who have surplus food or unused belongings with neighbors who need them. It extends the multi-screen navigation pattern from Lab 4 by using Jetpack Navigation Compose to link a home/browse screen, category screens, item detail screens (food and non-food), a cart/checkout flow, a listing-creation flow, chat, and a profile screen into one cohesive app.</dd>
 
           <dt>Key Features</dt>
-          <dd>[List the working features implemented, e.g. multi-screen navigation, forms, data display, etc.]</dd>
+          <dd>The app provides at least five connected screens home/browse, category listing, item detail (food/non-food), cart, and an add-item form linked through Navigation Compose. A single shared ViewModel (ReServeViewModel) holds app state such as the items list, cart contents, and user-added listings using StateFlow/mutableStateOf. Users can add a new item via the Add Item screen, and it immediately appears in the home/category screens and item lists, demonstrating shared state across screens. Reservation and borrowing actions update stock/availability shown on other screens.</dd>
 
           <dt>Lessons Learned</dt>
-          <dd>[Reflect on technical and design lessons learned while building this project.]</dd>
+          <dd>Building ReServe within the constraints of this project taught us the value of keeping app state centralized in a single ViewModel using StateFlow and mutableStateOf, rather than reaching for a database. Designing the navigation graph for five or more screens reinforced how Navigation Compose routes and arguments let separate screens read and update the same shared state, which made the "add an item and see it elsewhere" requirement straightforward once the ViewModel was structured correctly. I also learned that working through Lab 4's navigation and state-sharing patterns first made it much easier to scale up to a full multi-screen app, since the core architecture (NavHost, ViewModel, StateFlow) stayed the same and just grew in scope.</dd>
         </dl>
         <div class="links">
           <a href="	https://youtu.be/EPapnKFamWs?si=72mMwQfhVH7ayoCn" target="_blank" rel="noopener">▶ YouTube VSR</a>
@@ -443,13 +443,15 @@
       <div class="project-body">
         <dl>
           <dt>Problem Statement</dt>
-          <dd>[Describe the real-world problem this project addresses, building on the Room database from Lab 5.]</dd>
+          <dd>Food waste and unused household items are common in communities edible surplus food gets discarded while usable non-food items sit idle, even though nearby residents could use them. ReServe addresses this by letting users list surplus food (at a discount, before it expires) and lend non-food items (tools, furniture, books) to neighbors, reducing waste and encouraging community sharing.</dd>
 
           <dt>Key Features</dt>
-          <dd>[Describe the two screens, the API integrated, the sensor(s) used, and the cloud service (e.g. Firebase) implemented.]</dd>
+          <dd>The app extends the Lab 5 Room database (UserListedItem, CartItem, ChatMessage, Reservation, BorrowedItem, UserProfile entities) with new functionality across two key screens ProfileScreen and FoodDetailScreen. ProfileScreen lets users view and edit their display name, bio, location, and phone number, persisted locally via Room (UserProfileEntity/UserProfileDao). It integrates the device GPS sensor (via LocationViewModel/LocationHelper using FusedLocationProviderClient) to auto-detect and fill in the user's current location with one tap.
+FoodDetailScreen integrates the Open Food Facts REST API (via Retrofit/OpenFoodFactsClient) to fetch live nutrition data — calories, macros, allergens, Nutri-Score, and dietary labels — for each food listing, displayed in a NutritionCard. It also uses GPS data from LocationViewModel to show the real-time distance between the user and the item's seller.
+For cloud sync, FirestoreRepository uploads, updates, and deletes user-listed items in a Firebase Firestore "community_listings" collection whenever a user adds, edits, or deletes a listing (ReServeRepository.addUserItem/updateUserItem/deleteUserItem), enabling listings to be shared across devices/users beyond local Room storage.</dd>
 
           <dt>Lessons Learned</dt>
-          <dd>[Reflect on what you learned about combining local storage, APIs, sensors, and cloud sync.]</dd>
+          <dd>Combining Room with Firestore required careful separation of concerns — Room remains the source of truth for fast, offline-first local reads (exposed as Flow/StateFlow to Compose), while Firestore acts as a sync layer triggered alongside local writes, with graceful degradation (returning empty lists) if the network is unavailable. Integrating a REST API (Retrofit + Gson) taught the importance of nullable, defensive data models since real-world APIs often return incomplete records — the NutritionCard handles loading, success, not-found, and error states explicitly. Using GPS sensors highlighted the need for permission handling (runtime permission requests) and fallback values when location is unavailable, ensuring the UI never breaks even without a location fix. Overall, layering local persistence, sensors, REST APIs, and cloud sync within a shared ViewModel/Repository architecture reinforced the value of unidirectional data flow and StateFlow for keeping the UI reactive and consistent across all these asynchronous data sources.</dd>
         </dl>
         <div class="links">
           <a href="https://youtu.be/NfRD4O_Uj4o?si=g9FyI-5SlCCWfqIW" target="_blank" rel="noopener">▶ YouTube VSR</a>
