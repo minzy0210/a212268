@@ -306,11 +306,7 @@
       <div class="profile-card">
         <dt style="margin-top:0;">Introduction</dt>
         <dd>
-          [Write a short introduction about yourself — your background, interest in mobile app development, and what motivated you to take this course.]
-        </dd>
-        <dt>Learning Goals</dt>
-        <dd>
-          [List 2–3 goals, e.g. "Build confidence in Android UI design with Jetpack Compose", "Learn to integrate APIs and cloud storage", "Apply mobile development to a real-world problem".]
+          Hi! My name is Nurmeen and I am currently studying Software Engineering at UKM 
         </dd>
       </div>
     </div>
@@ -466,14 +462,56 @@ For cloud sync, FirestoreRepository uploads, updates, and deletes user-listed it
     <p class="eyebrow">04 · Reflection &amp; Learning Journey</p>
     <h2>From Lab 1 to Project 2</h2>
     <p>
-      [Reflect on your overall growth across the course — how your skills evolved from basic UI layouts in Lab 1 to a full-featured app with API, sensors, and cloud integration in Project 2.]
+      My journey began in Lab 1 where I learned the very basics of Jetpack Compose — 
+arranging UI elements using Row, Column, Box, and Text to recreate a screen layout. 
+It felt simple but foundational. By Lab 2, I added interactivity through TextField and 
+Button with state management. Lab 3 pushed me further into Material Design 3, 
+where I learned to apply consistent color schemes, typography, and theming — which 
+directly shaped the visual identity of ReServe. Lab 4 introduced Navigation and 
+ViewModel, teaching me how to manage multi-screen flows and share state across 
+composables without losing data on rotation. Lab 5 was a turning point — integrating 
+Room Database taught me the full MVVM + Repository architecture. By Project 2, I 
+had built upon every single lab: combining Room for local persistence, Firebase 
+Firestore for cloud sync, the Open Food Facts REST API via Retrofit for live nutrition 
+data, and GPS via FusedLocationProviderClient for real-time location awareness. 
+What started as a static birthday card UI had evolved into a fully connected, 
+sensor-aware, data-persistent community sharing application.
     </p>
     <p>
-      [Discuss the biggest challenges you faced and how you overcame them — e.g. debugging, learning new APIs, time management.]
-    </p>
+    The biggest challenge I faced was understanding how all the architectural layers 
+connect — specifically making the Room DAO, Repository, ViewModel, and 
+StateFlow work together as a clean pipeline without causing data loss or UI 
+inconsistencies. Debugging Room migration errors (when I added new entities like 
+UserProfileEntity and ReservationEntity) required learning about 
+fallbackToDestructiveMigration() and understanding database versioning. 
+Integrating Firebase Firestore alongside Room was another challenge — I had to 
+ensure that local inserts and cloud syncs happened correctly without blocking the 
+main thread, which taught me the importance of Kotlin coroutines and suspend 
+functions. On the API side, parsing the Open Food Facts JSON response and 
+gracefully handling null fields (since not every product has complete nutrition data) 
+required careful state management using a sealed class. The GPS integration also 
+had edge cases — handling permission requests, dealing with null last-known 
+locations, and updating the UI reactively using StateFlow. Each of these challenges 
+forced me to read documentation carefully, test incrementally, and truly understand 
+the code rather than just copying it.</p>
     <p>
-      [Discuss the impact of your chosen SDG on your project direction, and what this experience taught you about using technology for social good.]
-    </p>
+    My chosen theme is SDG 12: Responsible Consumption and Production, and it gave 
+my project a clear social purpose that shaped every design decision. ReServe is built 
+around the idea that surplus food and unused items in a community should not go to 
+waste — they should be shared, borrowed, or reserved before being discarded. This 
+directly addresses SDG 12's goal of reducing waste and encouraging sustainable 
+consumption patterns. Features like the "Going Soon" screen (highlighting near-expiry 
+food at discounted prices), the borrowing system for non-food items, and the 
+community listings powered by Firebase were not just technical exercises — they were 
+direct responses to the problem of overconsumption and unnecessary waste. The GPS 
+feature helps users find nearby listings, making sustainable sharing practical and 
+convenient. The Open Food Facts API integration brought real nutritional 
+transparency to food items, encouraging users to make more informed and mindful 
+choices about what they consume. Building ReServe taught me that mobile 
+development is most meaningful when it serves people and the planet. SDG 12 kept 
+me grounded throughout the project, reminding me that every feature I built had a 
+potential real-world impact — reducing food waste, extending the life of usable items, 
+and fostering a culture of sharing within the community rather than disposability. </p>
   </section>
 
   <!-- 5. SKILLS & TECH STACK -->
@@ -488,7 +526,6 @@ For cloud sync, FirestoreRepository uploads, updates, and deletes user-listed it
           <span class="pill">Kotlin</span>
           <span class="pill">Java</span>
           <span class="pill">XML</span>
-          <span class="pill">[+ add more]</span>
         </div>
       </div>
       <div class="skill-cat">
@@ -497,7 +534,6 @@ For cloud sync, FirestoreRepository uploads, updates, and deletes user-listed it
           <span class="pill">Android Studio</span>
           <span class="pill">Jetpack Compose</span>
           <span class="pill">Material Design</span>
-          <span class="pill">[+ add more]</span>
         </div>
       </div>
       <div class="skill-cat">
@@ -506,7 +542,6 @@ For cloud sync, FirestoreRepository uploads, updates, and deletes user-listed it
           <span class="pill">Room Database</span>
           <span class="pill">Firebase</span>
           <span class="pill">REST APIs</span>
-          <span class="pill">[+ add more]</span>
         </div>
       </div>
       <div class="skill-cat">
@@ -514,7 +549,6 @@ For cloud sync, FirestoreRepository uploads, updates, and deletes user-listed it
         <div class="pill-row">
           <span class="pill">Git / GitHub</span>
           <span class="pill">Figma</span>
-          <span class="pill">[+ add more]</span>
         </div>
       </div>
     </div>
@@ -525,17 +559,22 @@ For cloud sync, FirestoreRepository uploads, updates, and deletes user-listed it
     <p class="eyebrow">06 · Resources &amp; References</p>
     <h2>Resources, APIs &amp; Acknowledgements</h2>
     <ul class="ref-list">
-      <li>[API name] — [brief description, link to documentation]</li>
-      <li>[Library/SDK name] — [brief description, link to documentation]</li>
-      <li>AI Assistance: [Describe any AI tools used (e.g. ChatGPT, Claude, GitHub Copilot) and how they helped — e.g. debugging, code explanation, content drafting.]</li>
-      <li>[Other tutorials, articles, or course materials referenced]</li>
+      <li>Open Food Facts API — Free, open-source food product database used to fetch real-time nutrition information (calories, macros, allergens, Nutri-Score) for food items. https://world.openfoodfacts.org/data</li>
+      <li>Retrofit 2 — Type-safe HTTP client for Android used to make REST API calls to Open Food Facts. https://square.github.io/retrofit/</li>
+     <li>Firebase Firestore — Cloud NoSQL database used to sync community item listings across devices in real time. https://firebase.google.com/docs/firestore</li>
+      <li>Room (AndroidX) — Local SQLite persistence library used to store cart items, reservations, borrowed items, chat messages, user-listed items, and user profile data on-device. https://developer.android.com/training/data-storage/room</li>
+     <li>Jetpack Compose — Android's modern declarative UI toolkit used to build the entire app interface. https://developer.android.com/jetpack/compose</li>
+     <li>Jetpack Navigation Compose — Used to manage screen-to-screen navigation with a single NavHost. https://developer.android.com/jetpack/compose/navigation</li>
+      <li>Google Play Services Location (FusedLocationProviderClient) — Used to obtain the device's current GPS coordinates for distance calculation and profile location auto-fill. https://developers.google.com/android/reference/com/google/android/gms/location/FusedLocationProviderClient</li>
+     <li>Material 3 (Material Design 3) — Design system and component library providing theming, typography, colour schemes, and UI components. https://m3.material.io/</li>
+      <li>Claude (Anthropic) — Used throughout development for debugging Kotlin/Compose errors, explaining Room database setup (DAOs, entities, migrations), structuring the MVVM architecture (Repository pattern, StateFlow, ViewModel factories), writing boilerplate code (mappers, overlays), and reviewing navigation logic. Prompts were provided by the developer; all generated code was reviewed, understood, and integrated manually.</li>
     </ul>
   </section>
 
 </main>
 
 <footer>
-  © [Year] [Your Name] · Built for [Course Code / Course Name] · Hosted on GitHub Pages
+  © 2026 Minzy · Built for Mobile Programming · Hosted on GitHub Pages
 </footer>
 
 </body>
